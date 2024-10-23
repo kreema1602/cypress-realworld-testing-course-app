@@ -18,19 +18,28 @@ describe("home page", () => {
   })
 
   context("Courses section", () => {
-    it.only("Course: Testing Your First Next.js Application", () => {
+    it("Course: Testing Your First Next.js Application", () => {
       cy.getByData("course-0").find("a").contains("Get started").click()
       cy.location("pathname").should("equal", "/testing-your-first-application")
     })
 
-    it.only("Course: Testing Your First Next.js Application", () => {
+    it("Course: Testing Your First Next.js Application", () => {
       cy.getByData("course-1").find("a").contains("Get started").click()
       cy.location("pathname").should("equal", "/testing-foundations")
     })
 
-    it.only("Course: Testing Your First Next.js Application", () => {
+    it("Course: Testing Your First Next.js Application", () => {
       cy.getByData("course-2").find("a").contains("Get started").click()
       cy.location("pathname").should("equal", "/cypress-fundamentals")
+    })
+  })
+
+  context.only("Input the email", () => {
+    it("input the email", () => {
+      const email = "hello@gmail.com"
+      cy.get('[data-test = "email-input"]').type(email)
+      cy.get('[data-test = "submit-button"]').click()
+      cy.get('[data-test = "success-message"]').should("exist").contains(email)
     })
   })
 })
